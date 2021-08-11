@@ -4,6 +4,81 @@ const resultDiv = document.querySelector("#result-div");
 
 
 
+function isLeapYear(year) {
+
+    if (year % 400 === 0)
+        return true;
+
+    if (year % 100 === 0)
+        return false;
+
+    if (year % 4 === 0)
+        return true;
+
+    return false;
+}
+
+function getNextDate(date, month, year) {
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let d = Number(date) + 1; 
+    let m =Number(month);
+    let y = Number(year);
+    
+    //next day so date will increase only
+    if (m === 2) {
+        if (isLeapYear(y)) {
+            if (d > 29) {
+                d = 1;
+                m = 3;
+            }
+        } else {
+            if (d > 28) {
+                d = 1;
+                m = 3;
+            }
+        }
+    } else {
+        if (d > daysInMonth[m - 1]) {
+            d = 1;
+            m++;
+        }
+    }
+
+    if (m > 12) {
+        m = 1;
+        y++;
+    }
+    d = d.toString();
+    m = m.toString();
+    y = y.toString();
+    if (d.length == 1) {
+        d = "0" + d;
+    }
+    if (m.length == 1) {
+        m = "0" + m;
+    }
+    return [d, m, y];
+
+
+}
+
+
+function getNextPalindromeDate(date, month, year) {
+    
+    var nextDate = getNextDate(date, month, year);
+    var count = 0;
+
+    while (1) {
+        count++;
+        var fl = checkPalindromeForAllFormats(nextDate[0], nextDate[1], nextDate[2]);
+        if (fl) {
+            return [count, nextDate];
+        } else {
+            nextDate = getNextDate(nextDate[0], nextDate[1], nextDate[2]);
+        }
+    }
+}
+
 
 function isPalindrome(completeDate) {
     let i = 0;
@@ -18,12 +93,7 @@ function isPalindrome(completeDate) {
     return true;
 }
 
-function checkPalindrome(dateOfBirth) {
-    let dateArray = dateOfBirth.split("-");
-    let year = dateArray[0];
-    let month = dateArray[1];
-    let date = dateArray[2];
-
+function checkPalindromeForAllFormats(date, month, year) {
     let ddmmyyyy = date + month + year;
     let mmddyyyy = month + date + year;
     let yyyymmdd = year + month + date;
@@ -31,17 +101,31 @@ function checkPalindrome(dateOfBirth) {
     let mmddyy = month + date + year.slice(2, 4);
     let yymmdd = year.slice(2, 4) + month + date;
     const combinationArray = [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
-
     for (let i = 0; i < combinationArray.length; i++) {
         let flag = isPalindrome(combinationArray[i]);
         if (flag) {
-            resultDiv.innerText = "Congrats! Your Birthdate is Palindrome🥳"
-            return;
+            return true;
         }
     }
-    resultDiv.innerText = "Oh! Your Birthdate is Not Palindrome☹️"
-    return;
+    return false;
+}
 
+
+function checkPalindrome(dateOfBirth) {
+    let dateArray = dateOfBirth.split("-");
+    let year = dateArray[0];
+    let month = dateArray[1];
+    let date = dateArray[2];
+
+    let flg = checkPalindromeForAllFormats(date, month, year);
+    if (flg) {
+        resultDiv.innerText = "Congrats! Your Birthdate is Palindrome🥳"
+    } else {
+
+        let nextPalindromeDate = getNextPalindromeDate(date, month, year)
+        resultDiv.innerText = "Oh! Your Birthdate is Not Palindrome☹️ You missed it by " + nextPalindromeDate[0] + " days and the next Palindrome Date(DDMMYYY) is " + nextPalindromeDate[1][0] + "-" + nextPalindromeDate[1][1] + "-" + nextPalindromeDate[1][2];
+        return;
+    }
 }
 
 function checkBirthDate() {
