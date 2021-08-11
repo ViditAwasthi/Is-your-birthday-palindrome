@@ -4,11 +4,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     text-align: center;
-    background-color:#858bf8;
+    background-color: #858bf8;
 }
 
 nav {
-    background-color:#676eff ;
+    background-color: #676eff;
     color: white;
     padding: 1.2rem;
     border-bottom-left-radius: 4rem;
@@ -31,7 +31,7 @@ nav {
     border-radius: 0.5rem;
     border: 2px solid white;
     font-weight: bold;
-    color:#676eff ;
+    color: #676eff;
     cursor: pointer;
 }
 
@@ -48,7 +48,7 @@ label {
     border-radius: 0.5rem;
     border: 2px solid #676eff;
     font-weight: bold;
-    color:#676eff ;
+    color: #676eff;
     cursor: pointer;
 }
 
@@ -63,13 +63,13 @@ label {
 }
 
 footer {
-    position: absolute;
-    bottom: 0px;
+    margin-top: 4rem;
     width: 99.75%;
     padding: 0.1rem;
     background-color: #676eff;
     color: white;
 }
-h4{
+
+h4 {
     color: white;
 }

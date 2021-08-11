@@ -20,38 +20,36 @@ function isLeapYear(year) {
 
 function getPrevDate(date, month, year) {
     var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let d = Number(date) - 1; 
-    let m =Number(month);
+    let d = Number(date) - 1;
+    let m = Number(month);
     let y = Number(year);
 
     console.log(d, m, y);
     if (m === 3) {
         if (isLeapYear(y)) {
-            if (d <1) {
+            if (d < 1) {
                 d = 29;
                 m = 2;
             }
         } else {
-            if (d <1 ) {
+            if (d < 1) {
                 d = 28;
                 m = 2;
             }
         }
-    }
-     else {
-         if(d==0 && m==1){
-             d=31;
-             m = m-1;
-         }
-         else if(d<1){
-            m = m-1;
+    } else {
+        if (d == 0 && m == 1) {
+            d = 31;
+            m = m - 1;
+        } else if (d < 1) {
+            m = m - 1;
             d = daysInMonth[m - 1];
             console.log("this is day", d);
-         }
+        }
     }
     if (m < 1) {
         m = 12;
-        y = y-1;
+        y = y - 1;
     }
     d = d.toString();
     m = m.toString();
@@ -65,7 +63,7 @@ function getPrevDate(date, month, year) {
     return [d, m, y];
 }
 
-function getPrevPalindromeDate(date, month, year){
+function getPrevPalindromeDate(date, month, year) {
     var prevDate = getPrevDate(date, month, year);
     var count = 0;
 
@@ -82,10 +80,10 @@ function getPrevPalindromeDate(date, month, year){
 
 function getNextDate(date, month, year) {
     var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let d = Number(date) + 1; 
-    let m =Number(month);
+    let d = Number(date) + 1;
+    let m = Number(month);
     let y = Number(year);
-    
+
     //next day so date will increase only
     if (m === 2) {
         if (isLeapYear(y)) {
@@ -126,7 +124,7 @@ function getNextDate(date, month, year) {
 
 
 function getNextPalindromeDate(date, month, year) {
-    
+
     var nextDate = getNextDate(date, month, year);
     var count = 0;
 
@@ -187,10 +185,10 @@ function checkPalindrome(dateOfBirth) {
         let nextPalindromeDate = getNextPalindromeDate(date, month, year);
         let prevPalindromeDate = getPrevPalindromeDate(date, month, year);
 
-        if(nextPalindromeDate[0] <prevPalindromeDate[0]){
-        resultDiv.innerText = "Oh! Your Birthdate is Not Palindrome☹️ You missed it by " + nextPalindromeDate[0] + " days and the next Palindrome Date(DDMMYYY) is " + nextPalindromeDate[1][0] + "-" + nextPalindromeDate[1][1] + "-" + nextPalindromeDate[1][2];
-        }else{
-        resultDiv.innerText = "Oh! Your Birthdate is Not Palindrome☹️ You missed it by " + prevPalindromeDate[0] + " days and the next Palindrome Date(DDMMYYY) is " + prevPalindromeDate[1][0] + "-" + prevPalindromeDate[1][1] + "-" + prevPalindromeDate[1][2];
+        if (nextPalindromeDate[0] < prevPalindromeDate[0]) {
+            resultDiv.innerText = "Oh! Your Birthdate is Not Palindrome☹️ You missed it by " + nextPalindromeDate[0] + " days and the next Palindrome Date(DDMMYYY) is " + nextPalindromeDate[1][0] + "-" + nextPalindromeDate[1][1] + "-" + nextPalindromeDate[1][2];
+        } else {
+            resultDiv.innerText = "Oh! Your Birthdate is Not Palindrome☹️ You missed it by " + prevPalindromeDate[0] + " days and the next Palindrome Date(DDMMYYY) is " + prevPalindromeDate[1][0] + "-" + prevPalindromeDate[1][1] + "-" + prevPalindromeDate[1][2];
         }
         return;
     }
