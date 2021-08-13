@@ -5,6 +5,7 @@ User enters his birthdate in the Format mm-dd-yyyy and then this Application che
 (DDMMYYYY, MMDDYYYY, YYYYMMDD, DDMMYY, MMDDYY, YYMMDD)
 
 If the birthday is not palindrome, then this app also tells the user the nearest Palindrome Date from his birthday. 
+
 Built Using:
 - JavaScript
 - HTML
